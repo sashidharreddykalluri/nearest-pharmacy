@@ -1,0 +1,73 @@
+swagger: "2.0"
+info:
+  description: Service to retrieve nearest pharmacy to a user.
+  version: 1.0.0
+  title: Nearest Pharmacy REST API
+  license:
+    name: Apache 2.0
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+tags:
+  - name: pharmacy
+    description: Nearest pharmacy.
+schemes:
+  - https
+basePath: '/pharmacies'
+paths:
+  /pharmacy-near-me:
+    get:
+      tags:
+        - pharmacy
+      summary: Retrieves nearest pharmacy.
+      description: This service allows consumers to retrieve nearest pharmacy to a user provided coordinates
+      produces:
+        - application/json
+      parameters:
+        - name: latitude
+          in: query
+          description: user latitude coordinate.
+          type: string
+          required: true
+          default: 'none'
+        - name: longitude
+          in: query
+          description: user longitude coordinate.
+          type: string
+          required: true
+          default: 'none'
+      responses:
+        200:
+          description: successful operation.
+          schema:
+            $ref: '#/definitions/PharmacyAddress'
+        400:
+          description: "Bad request due to wrong latitude/longitude format"
+definitions:
+  PharmacyAddress:
+    type: object
+    required:
+      - name
+      - address
+      - city
+      - state
+      - zip
+    properties:
+      name:
+        type: string
+        example: 'Walgreens'
+        description: Name of the pharmacy
+      address:
+        type: string
+        example: '1234 Long street wall'
+        description: address of the pharmacy
+      city:
+        type: string
+        example: 'Kansas city'
+        description: city of the pharmacy
+      state:
+        type: string
+        example: 'KS'
+        description: State of the pharmacy
+      zip:
+        type: string
+        example: '64521'
+        description: five digit zip code of the pharmacy

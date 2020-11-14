@@ -9,7 +9,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "pharmacies")
 public class Pharmacies {
-
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -18,10 +17,18 @@ public class Pharmacies {
 	private String city;
 	private String state;
 	private String zip;
-	private String distance;
+	private float distance;
 
 	public Pharmacies() {}
 	
+	/**
+	 * 
+	 * @param name
+	 * @param address
+	 * @param city
+	 * @param state
+	 * @param zip
+	 */
 	public Pharmacies(String name, String address, String city, String state, String zip) {
 		this.name = name;
 		this.address = address;
@@ -78,11 +85,11 @@ public class Pharmacies {
 		this.id = id;
 	}
 
-	public String getDistance() {
+	public float getDistance() {
 		return distance;
 	}
 
-	public void setDistance(String distance) {
+	public void setDistance(float distance) {
 		this.distance = distance;
 	}
 }

@@ -12,7 +12,7 @@ public class PharmacyServiceImpl implements PharmacyService{
 
 	@Autowired
     private PharmacyRepository pharmacyRepository;
-	
+
 	@Override
 	public List<Pharmacies> findNearestPharmacyToUser(String userLatitude, String userLongitude) {
 		List<Pharmacies> list = pharmacyRepository.findNearestPharmacyAndSort(userLatitude, userLongitude);
